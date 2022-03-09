@@ -23,18 +23,13 @@ def checkout(skus):
         total += PRICE_TABLE[key] * counter[key]
         if key in OFFERS:
             sorted_dict = sorted(OFFERS[key], key=OFFERS[key].get, reverse=True)
-            relevant_promotion = 0
-            for offer_number in sorted_dict:
-                if counter[key] >= offer_number:
-                    relevant_promotion = offer_number
-                    break
-            if relevant_promotion:
-                total -= (counter[key] // relevant_promotion) * (relevant_promotion*PRICE_TABLE[key]-OFFERS[key][relevant_promotion])
+            
 
     return total
 
 if __name__ == '__main__':
     print(checkout('AAAAAAAABC'))
+
 
 
 
