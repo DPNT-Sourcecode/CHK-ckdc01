@@ -7,10 +7,12 @@ PRICE_TABLE = {
     'A': 50,
     'B': 30,
     'C': 20,
-    'D': 15
+    'D': 15,
+    'E': 40
 }
 
-OFFERS = {'A': {3: 130, 5: 200},'B': {2: 45}}
+OFFERS = {'A': {3: 130, 5: 200},
+          'B': {2: 45}}
 
 def checkout(skus):
     total = 0
@@ -21,13 +23,19 @@ def checkout(skus):
         total += PRICE_TABLE[key] * counter[key]
         if key in OFFERS:
             sorted_dict = sorted(OFFERS[key], key=OFFERS[key].get, reverse=True)
-            print(sorted_dict)
-            # total -= (counter[key] // OFFERS[key][0]) * (OFFERS[key][0]*PRICE_TABLE[key]-OFFERS[key][1])
+            relevant_promotion = 0
+            for offer_number in sorted_dict:
+                if counter[key] >= offer_number:
+                    relevant_promotion = offer_number
+                    break
+            if relevant_promotion:
+                total -= (counter[key] // relevant_promotion) * (relevant_promotion*PRICE_TABLE[key]-OFFERS[key][relevant_promotion])
 
     return total
 
 if __name__ == '__main__':
-    checkout('AAAAABC')
+    print(checkout('AAAAAAAABC'))
+
 
 
 
