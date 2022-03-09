@@ -20,7 +20,7 @@ def checkout(skus):
     counter = Counter(skus)
     for key in counter.keys():
         if key not in PRICE_TABLE:
-            raise ValueError(f'SKU {key} not in price table.')
+            return -1
         if counter[key] == 1:
             total += PRICE_TABLE[key]
         elif (key, counter[key]) in OFFERS:
@@ -28,6 +28,7 @@ def checkout(skus):
         else:
             total += PRICE_TABLE[key] * counter[key]
     return total
+
 
 
 
