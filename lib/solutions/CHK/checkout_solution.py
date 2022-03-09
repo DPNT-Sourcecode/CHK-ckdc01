@@ -20,11 +20,9 @@ def checkout(skus):
             return -1
         total += PRICE_TABLE[key] * counter[key]
         if key in OFFERS:
-            total -= (counter[key] // OFFERS[key][0]) * (counter[key]*PRICE_TABLE[key]-OFFERS[key][1])
+            total -= (counter[key] // OFFERS[key][0]) * (OFFERS[key][0]*PRICE_TABLE[key]-OFFERS[key][1])
 
     return total
 
-if __name__ == '__main__':
-    print(checkout('AABC'))
 
 
