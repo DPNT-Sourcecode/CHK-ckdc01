@@ -17,10 +17,11 @@ OFFERS = {
 
 def checkout(skus):
     total = 0
-    counter = Counter(skus)
+    counter = {value: key for key, value in Counter(list(skus)).items()}
     print(counter)
 
 if __name__ == '__main__':
     checkout('ABCA')
+
 
 
