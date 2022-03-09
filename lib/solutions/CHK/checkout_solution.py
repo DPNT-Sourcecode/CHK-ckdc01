@@ -20,7 +20,7 @@ def checkout(skus):
             return -1
         total += PRICE_TABLE[key] * counter[key]
         if key in OFFERS:
-            sorted_dict = sorted(OFFERS[key], key=OFFERS[key].get)
+            sorted_dict = sorted(OFFERS[key], key=OFFERS[key].get, reverse=True)
             print(sorted_dict)
             # total -= (counter[key] // OFFERS[key][0]) * (OFFERS[key][0]*PRICE_TABLE[key]-OFFERS[key][1])
 
@@ -28,5 +28,6 @@ def checkout(skus):
 
 if __name__ == '__main__':
     checkout('AAAAABC')
+
 
 
