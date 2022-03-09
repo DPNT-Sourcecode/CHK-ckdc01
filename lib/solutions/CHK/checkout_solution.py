@@ -10,10 +10,7 @@ PRICE_TABLE = {
     'D': 15
 }
 
-OFFERS = [
-    ('A', 3): 130,
-    ('B', 2): 45
-]
+OFFERS = {'A': (3, 130), 'B': (2, 45)}
 
 def checkout(skus):
     total = 0
@@ -21,19 +18,13 @@ def checkout(skus):
     for key in counter.keys():
         if key not in PRICE_TABLE:
             return -1
-        if counter[key] == 1:
-            total += PRICE_TABLE[key]
-        elif (key, counter[key]) in OFFERS:
-            total += OFFERS[key, counter[key]]
-        else:
-            total += PRICE_TABLE[key] * counter[key]
+        total += PRICE_TABLE[key] * counter[key]
+        if key in OFFERS:
+            total -= (counter[key] // OFFERS[key][0]) * (counter[key]*PRICE_TABLE[key]-OFFERS[key][1])
 
     return total
 
-
-
-
-
-
+if __name__ == '__main__':
+    print(checkout('AABC'))
 
 
