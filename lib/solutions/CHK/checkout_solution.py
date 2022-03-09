@@ -10,10 +10,10 @@ PRICE_TABLE = {
     'D': 15
 }
 
-OFFERS = {
+OFFERS = [
     ('A', 3): 130,
     ('B', 2): 45
-}
+]
 
 def checkout(skus):
     total = 0
@@ -27,7 +27,9 @@ def checkout(skus):
             total += OFFERS[key, counter[key]]
         else:
             total += PRICE_TABLE[key] * counter[key]
+
     return total
+
 
 
 
